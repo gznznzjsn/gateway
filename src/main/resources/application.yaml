@@ -1,0 +1,35 @@
+spring:
+  config:
+    import: optional:.env[.properties]
+  application:
+    name: gateway
+  cloud:
+    gateway:
+      routes:
+        - id: employee-service-id
+          uri: lb://employee-service
+          predicates:
+            - Path=/employee-api/v1/**
+          filters:
+            - AuthFilter
+        - id: user-service-id
+          uri: lb://user-service
+          predicates:
+            - Path=/user-api/v1/**
+
+
+server:
+  port: 8080
+
+eureka:
+  client:
+    service-url:
+      defaultZone: ${EUREKA_CLIENT_SERVICE-URL}
+  instance:
+    prefer-ip-address: true
+
+logging:
+  level:
+    root: info
+    org.springframework.cloud.gateway.route.RouteDefinitionLocator: info
+    org.springframework. cloud.gateway: trace
