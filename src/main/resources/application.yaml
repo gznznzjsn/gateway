@@ -12,6 +12,12 @@ spring:
             - Path=/employee-api/v1/**
           filters:
             - AuthFilter
+        - id: order-service-id
+          uri: lb://order-service
+          predicates:
+            - Path=/order-api/v1/**
+          filters:
+            - AuthFilter
         - id: user-service-id
           uri: lb://user-service
           predicates:
