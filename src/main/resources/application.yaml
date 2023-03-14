@@ -18,11 +18,16 @@ spring:
             - Path=/order-api/v1/**
           filters:
             - AuthFilter
+        - id: task-service-id
+          uri: lb://task-service
+          predicates:
+            - Path=/task-api/v1/**
+          filters:
+            - AuthFilter
         - id: user-service-id
           uri: lb://user-service
           predicates:
             - Path=/user-api/v1/**
-
 
 server:
   port: 8080
