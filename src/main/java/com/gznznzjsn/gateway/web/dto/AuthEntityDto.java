@@ -1,4 +1,4 @@
-package com.gznznzjsn.gateway.web.security.filter.dto;
+package com.gznznzjsn.gateway.web.dto;
 
 import lombok.Builder;
 
